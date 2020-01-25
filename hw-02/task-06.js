@@ -10,5 +10,5 @@ for (let i = 0; i < numbers.length; i++) {
   total = numbers[i] + total;
 }
 if (total !== 0) {
-  console.log (`Общаая сумма чисел равна ${total}`);
+  console.log (`Общая сумма чисел равна ${total}`);
 }
