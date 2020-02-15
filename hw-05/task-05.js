@@ -16,10 +16,6 @@ class Car {
     return this.price;
   }
 
-  static get isOn () {
-    return (this.isOn = true);
-  }
-
   static getSpecs (car) {
     console.log (car);
   }
