@@ -1,5 +1,5 @@
 'use strict';
-import users from '/users.js';
+import users from './users.js';
 
 const getUserWithEmail = (users, email) =>
   users.find (user => user.email === email);
