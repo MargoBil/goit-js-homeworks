@@ -1,6 +1,5 @@
 'use strict';
 const input = document.querySelector ('#validation-input');
-console.log (input);
 input.addEventListener ('change', validationCheck);
 
 function validationCheck (event) {
