@@ -1,0 +1,10 @@
+* {
+box-sizing: border-box;
+}
+body {
+  display: grid;
+  transform: translate(50%);
+  background-color: #d0ff00;
+  color: #0000ff;
+  animation: both;
+}
