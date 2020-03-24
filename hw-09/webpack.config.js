@@ -4,7 +4,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  context: path.resolve(__dirname, 'src'),
+  mode: 'production',
+  entry: './index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
@@ -16,11 +18,14 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(), new HtmlWebpackPlugin({template: './src/index.html'}),
+    new CleanWebpackPlugin(), new HtmlWebpackPlugin({template: './index.html'}),
     new MiniCssExtractPlugin({filename: 'style.css'})
   ],
   devServer: {
-    port: 4040
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 4040,
+    stats: 'errors-only'
   },
   devtool: 'cheap-eval-source-map'
 };
