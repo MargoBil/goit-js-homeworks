@@ -1,11 +1,10 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpackMerge = require('webpack-merge');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-module.exports = {
+const loadModeConfig = env => require(`./build-utils/${env.mode}.config`)(env);
+module.exports = env => webpackMerge({
   context: path.resolve(__dirname, 'src'),
-  mode: 'production',
+  mode: env.mode,
   entry: './index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -13,19 +12,10 @@ module.exports = {
   },
   module:{
     rules:[
-      { test: /\.js$/, exclude: /node_modules/, use:['babel-loader']},
-      { test: /\.css$/, use: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']},
+      { test: /\.js$/, exclude: /node_modules/, use:['babel-loader']}
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(), new HtmlWebpackPlugin({template: './index.html'}),
-    new MiniCssExtractPlugin({filename: 'style.css'})
-  ],
-  devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    compress: true,
-    port: 4040,
-    stats: 'errors-only'
-  },
-  devtool: 'cheap-eval-source-map'
-};
+    new CleanWebpackPlugin()
+  ]
+}, loadModeConfig(env));
